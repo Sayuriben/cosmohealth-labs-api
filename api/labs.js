@@ -1,52 +1,22 @@
-export default function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Content-Type', 'application/json');
-
-  const labs = [
-    {
-      patientId: "P001",
-      culture: "E. coli",
-      cultureResult: "Resistant to cephalosporins, sensitive to carbapenems",
-      crpValue: 45,
-      crpTrend: "Falling",
-      wccValue: 8.2,
-      wccTrend: "Stable",
-      severity: "high"
-    },
-    {
-      patientId: "P002",
-      culture: "Klebsiella pneumoniae",
-      cultureResult: "Sensitive to narrow-spectrum agents",
-      crpValue: 32,
-      crpTrend: "Falling",
-      wccValue: 6.5,
-      wccTrend: "Falling",
-      severity: "medium"
-    },
-    {
-      patientId: "P003",
-      culture: "Staphylococcus aureus",
-      cultureResult: "MSSA, sensitive to beta-lactams",
-      crpValue: 28,
-      crpTrend: "Stable",
-      wccValue: 7.1,
-      wccTrend: "Stable",
-      severity: "high"
-    }
-  ];
-
-  const path = req.url || '/';
-  
-  if (path === '/' || path === '/api/labs') {
-    return res.status(200).json(labs);
-  }
-
-  const patientId = path.split('/').pop();
-  const lab = labs.find(l => l.patientId === patientId);
-  
-  if (lab) {
-    return res.status(200).json(lab);
-  }
-  
-  return res.status(404).json({ error: 'Not found' });
-}
+[
+  {"patientId":"P001","culture":"E. coli","cultureResult":"Resistant to cephalosporins, sensitive to carbapenems and fluoroquinolones","crpValue":45,"crpTrend":"Falling","wccValue":8.2,"wccTrend":"Stable","severity":"high"},
+  {"patientId":"P002","culture":"Klebsiella pneumoniae","cultureResult":"Sensitive to narrow-spectrum agents including ceftriaxone","crpValue":32,"crpTrend":"Falling","wccValue":6.5,"wccTrend":"Falling","severity":"medium"},
+  {"patientId":"P003","culture":"Staphylococcus aureus (MSSA)","cultureResult":"Sensitive to beta-lactams, flucloxacillin, and amoxicillin","crpValue":28,"crpTrend":"Stable","wccValue":7.1,"wccTrend":"Stable","severity":"medium"},
+  {"patientId":"P004","culture":"Pseudomonas aeruginosa","cultureResult":"Multi-drug resistant, sensitive only to carbapenems and colistin","crpValue":72,"crpTrend":"Rising","wccValue":15.8,"wccTrend":"Rising","severity":"high"},
+  {"patientId":"P005","culture":"Mixed anaerobes","cultureResult":"Sensitive to metronidazole and amoxicillin-clavulanate","crpValue":38,"crpTrend":"Falling","wccValue":9.4,"wccTrend":"Stable","severity":"medium"},
+  {"patientId":"P006","culture":"Enterococcus faecalis","cultureResult":"Sensitive to ampicillin and vancomycin","crpValue":55,"crpTrend":"Stable","wccValue":11.2,"wccTrend":"Stable","severity":"high"},
+  {"patientId":"P007","culture":"Staphylococcus aureus (MSSA)","cultureResult":"Sensitive to flucloxacillin and cephalosporins","crpValue":22,"crpTrend":"Falling","wccValue":6.8,"wccTrend":"Falling","severity":"low"},
+  {"patientId":"P008","culture":"Streptococcus pneumoniae","cultureResult":"Sensitive to penicillin, amoxicillin, and macrolides","crpValue":18,"crpTrend":"Falling","wccValue":5.9,"wccTrend":"Falling","severity":"low"},
+  {"patientId":"P009","culture":"Neisseria meningitidis","cultureResult":"Sensitive to penicillin G and ceftriaxone","crpValue":80,"crpTrend":"Stable","wccValue":17.5,"wccTrend":"Rising","severity":"high"},
+  {"patientId":"P010","culture":"E. coli","cultureResult":"ESBL-producing, sensitive to carbapenems and piperacillin-tazobactam","crpValue":41,"crpTrend":"Falling","wccValue":10.1,"wccTrend":"Stable","severity":"medium"},
+  {"patientId":"P011","culture":"Streptococcus viridans","cultureResult":"Sensitive to penicillin G, amoxicillin, and ceftriaxone","crpValue":35,"crpTrend":"Falling","wccValue":8.8,"wccTrend":"Falling","severity":"medium"},
+  {"patientId":"P012","culture":"E. coli","cultureResult":"Sensitive to trimethoprim, nitrofurantoin, and amoxicillin","crpValue":12,"crpTrend":"Falling","wccValue":5.2,"wccTrend":"Stable","severity":"low"},
+  {"patientId":"P013","culture":"Acinetobacter baumannii","cultureResult":"Extensively drug-resistant, sensitive only to colistin and tigecycline","crpValue":68,"crpTrend":"Rising","wccValue":14.6,"wccTrend":"Rising","severity":"high"},
+  {"patientId":"P014","culture":"Haemophilus influenzae","cultureResult":"Sensitive to amoxicillin-clavulanate and macrolides","crpValue":15,"crpTrend":"Falling","wccValue":6.1,"wccTrend":"Stable","severity":"low"},
+  {"patientId":"P015","culture":"Pseudomonas aeruginosa","cultureResult":"Sensitive to meropenem and piperacillin-tazobactam, resistant to cephalosporins","crpValue":62,"crpTrend":"Stable","wccValue":13.4,"wccTrend":"Stable","severity":"high"},
+  {"patientId":"P016","culture":"Staphylococcus aureus (MSSA)","cultureResult":"Sensitive to flucloxacillin, clindamycin, and cephalosporins","crpValue":30,"crpTrend":"Falling","wccValue":8.0,"wccTrend":"Falling","severity":"medium"},
+  {"patientId":"P017","culture":"Streptococcus pneumoniae","cultureResult":"Sensitive to amoxicillin, penicillin, and doxycycline","crpValue":10,"crpTrend":"Falling","wccValue":5.5,"wccTrend":"Falling","severity":"low"},
+  {"patientId":"P018","culture":"MRSA","cultureResult":"Methicillin-resistant, sensitive to vancomycin, linezolid, and daptomycin","crpValue":58,"crpTrend":"Stable","wccValue":12.8,"wccTrend":"Stable","severity":"high"},
+  {"patientId":"P019","culture":"Coagulase-negative Staphylococcus","cultureResult":"Likely contaminant, sensitive to vancomycin and linezolid","crpValue":8,"crpTrend":"Falling","wccValue":4.9,"wccTrend":"Stable","severity":"low"},
+  {"patientId":"P020","culture":"Cryptococcus neoformans","cultureResult":"Sensitive to amphotericin B and fluconazole, fungal CNS infection","crpValue":75,"crpTrend":"Rising","wccValue":16.2,"wccTrend":"Rising","severity":"high"}
+]
